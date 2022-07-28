@@ -53,6 +53,7 @@ func main() {
 	}
 
 	fmt.Println(rgbaToPixel(img.At(10, 10).RGBA()))
+	fmt.Println(rgbaToPixel(img.At(10, 0).RGBA()))
 	for y := 0; y < height; y++ {
 		for x := 0; x < width; x++ {
 			rgbaPixel := rgbaToPixel(img.At(x, y).RGBA())
