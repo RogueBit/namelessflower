@@ -8,8 +8,6 @@ import (
 )
 
 func init() {
-	// damn important or else At(), Bounds() functions will
-	// caused memory pointer error!!
 	image.RegisterFormat("jpeg", "jpeg", jpeg.Decode, jpeg.DecodeConfig)
 }
 
@@ -22,9 +20,6 @@ func main() {
 	}
 
 	defer imgfile.Close()
-
-	// get image height and width with image/jpeg
-	// change accordinly if file is png or gif
 
 	imgCfg, _, err := image.DecodeConfig(imgfile)
 
@@ -39,9 +34,6 @@ func main() {
 	fmt.Println("Width : ", width)
 	fmt.Println("Height : ", height)
 
-	// we need to reset the io.Reader again for image.Decode() function below to work
-	// otherwise we will  - panic: runtime error: invalid memory address or nil pointer dereference
-	// there is no build in rewind for io.Reader, use Seek(0,0)
 	imgfile.Seek(0, 0)
 
 	// get the image
@@ -52,8 +44,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println(rgbaToPixel(img.At(10, 10).RGBA()))
-	fmt.Println(rgbaToPixel(img.At(10, 0).RGBA()))
+	fmt.Println("Pixel map:")
 	for y := 0; y < height; y++ {
 		for x := 0; x < width; x++ {
 			rgbaPixel := rgbaToPixel(img.At(x, y).RGBA())
