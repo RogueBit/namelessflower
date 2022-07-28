@@ -1,2 +1,2 @@
 # namelessflower
-golang experiment with image manipulation
+golang experiment with image manipulation, qr codes, and stego...
